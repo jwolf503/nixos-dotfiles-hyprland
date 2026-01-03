@@ -20,15 +20,16 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+              ./configuration.nix
           ];
         };
         homeConfigurations."jay" = 
           home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.${system};
               extraSpecialArgs = { inherit nvf; };
-             modules = [ 
-                 ./nvmmax.nix
+              modules = [ 
+                  nvf.homeManagerModules.default
+                 ./nvfmax.nix
                  ./home.nix
                      ];
                  };

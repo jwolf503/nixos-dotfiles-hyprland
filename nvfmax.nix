@@ -7,8 +7,10 @@
             nvf.modules.maximal
         ];
 
-        extraConfig = {
-            vim .theme.enable = true;
-        };
+        vim = {
+        theme.enable = true;
+        
     };
+};
+  
 }
