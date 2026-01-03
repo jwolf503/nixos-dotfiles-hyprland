@@ -25,15 +25,15 @@
         };
         homeConfigurations."jay" = 
           home-manager.lib.homeManagerConfiguration {
-             pkgs = nixpkgs.legacyPackages.${system};
+              pkgs = nixpkgs.legacyPackages.${system};
+              extraSpecialArgs = { inherit nvf; };
              modules = [ 
+                 ./nvmmax.nix
                  ./home.nix
-                 {
-                     imports = [ ./modules/nvfmax.nix ];
-                     _module.args.nvf = nvf;
-                 }
-               ];
+                     ];
+                 };
+               
 
-      };
-    };
+        };
+    
 }
