@@ -4,7 +4,7 @@
         enable = true;
         
         modules = [
-            nvf.modules.maximal
+          #  nvf.modules.maximal
         ];
 
         vim = {
