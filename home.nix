@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./sh.nix
     ./nvfmax.nix
+    ./hyprland.nix
   ];
-
 
   home.username = "jay";
   home.homeDirectory = "/home/jay";
@@ -26,9 +29,8 @@
         co = "checkout";
         cm = "commit";
       };
-    };  
+    };
   };
-
 
   home.packages = with pkgs; [
     ripgrep
@@ -41,7 +43,4 @@
   ];
 
   programs.vim.enable = true;
-  
-  
 }
-

@@ -1,16 +1,17 @@
-
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-jay"; 
+  networking.hostName = "nixos-jay";
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
@@ -26,21 +27,21 @@
 
   services.libinput.enable = true;
   programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      };
-      
-      services.greetd = {
-        enable = true;
-        settings.default_session = {
-          command = "start-hyprland";
-          user = "jay";
-        };
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "start-hyprland";
+      user = "jay";
     };
-    
+  };
+
   users.users.jay = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     packages = with pkgs; [
       tree
     ];
@@ -48,7 +49,7 @@
 
   # programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     vimPlugins.nvim-cmp
     vimPlugins.nvim-treesitter
     vimPlugins.telescope-nvim
@@ -73,13 +74,10 @@
     fd
     rust-analyzer
     home-manager
-    wlsunset
-   ];
+  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-   ];
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
-  system.stateVersion = "25.11"; 
-
+  ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  system.stateVersion = "25.11";
 }
-
