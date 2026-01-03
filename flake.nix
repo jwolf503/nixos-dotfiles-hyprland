@@ -29,7 +29,7 @@
               extraSpecialArgs = { inherit nvf; };
               modules = [ 
                   nvf.homeManagerModules.default
-                 ./nvfmax.nix
+                 ./modules/nvfmax.nix
                  ./home.nix
                      ];
                  };
