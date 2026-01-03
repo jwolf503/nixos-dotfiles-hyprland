@@ -4,6 +4,9 @@ let
       ll = "ls -l";
       la = "ls -la";
       ".." = "cd ..";
+      vim = "vim -S ~/.vim/vimrc";
+      gvim = "gvim -S ~/.vim/vimrc";
+      ncf = "cd ~/nixos-dotfiles";
       nhs = "home-manager switch --flake ~/nixos-dotfiles";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos-jay";
  };
