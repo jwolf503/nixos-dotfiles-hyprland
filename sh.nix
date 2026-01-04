@@ -9,6 +9,7 @@ let
       ncf = "cd ~/nixos-dotfiles";
       nhs = "home-manager switch --flake ~/nixos-dotfiles";
       nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos-jay";
+      nfu = "cd ~/nixos-dotfiles && sudo nix flake update";
  };
 in
 {

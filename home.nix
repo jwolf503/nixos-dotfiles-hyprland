@@ -2,7 +2,9 @@
   config,
   pkgs,
   ...
-}: {
+}: 
+
+{
   imports = [
     ./sh.nix
     ./nvfmax.nix
@@ -24,10 +26,10 @@
     settings = {
       user.name = "jwolf503";
       user.email = "wolfanger.jason1@gmail.com";
-      alias = {
-        pu = "push";
-        co = "checkout";
-        cm = "commit";
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
       };
     };
   };

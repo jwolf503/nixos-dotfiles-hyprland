@@ -74,6 +74,7 @@
     fd
     rust-analyzer
     home-manager
+    python3
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
