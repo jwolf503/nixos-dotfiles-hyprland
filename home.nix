@@ -42,6 +42,7 @@
     fish
     dunst
     libnotify
+    lazygit
   ];
 
   programs.vim.enable = true;
