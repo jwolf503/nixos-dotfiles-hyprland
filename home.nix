@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}: 
-
-{
+}: {
   imports = [
     ./sh.nix
     ./nvfmax.nix
@@ -43,6 +41,10 @@
     dunst
     libnotify
     lazygit
+    ghostty
+    zoxide
+    tealdeer
+    rustup
   ];
 
   programs.vim.enable = true;
