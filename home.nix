@@ -7,6 +7,7 @@
     ./sh.nix
     ./nvfmax.nix
     ./hyprland.nix
+    ./brave-policy/default.nix
   ];
 
   home.username = "jay";
