@@ -53,6 +53,7 @@
     vimPlugins.nvim-cmp
     vimPlugins.nvim-treesitter
     vimPlugins.telescope-nvim
+    vimPlugins.LazyVim
     wget
     brave
     foot
@@ -75,6 +76,9 @@
     rust-analyzer
     home-manager
     python3
+    fish
+    xonsh
+    neovim
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono

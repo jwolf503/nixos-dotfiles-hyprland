@@ -37,7 +37,6 @@
     nitch
     rofi
     fzf
-    fish
     dunst
     libnotify
     lazygit
@@ -45,6 +44,7 @@
     zoxide
     tealdeer
     rustup
+    neovim
   ];
 
   programs.vim.enable = true;
