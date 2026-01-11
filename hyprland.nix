@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
+
   home.packages = with pkgs; [
     fuzzel
     polkit_gnome
@@ -19,5 +21,8 @@
     grim
     slurp
     pyprland
+    hyprlauncher
+    hicolor-icon-theme
+    desktop-file-utils
   ];
 }

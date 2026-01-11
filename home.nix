@@ -5,9 +5,8 @@
 }: {
   imports = [
     ./sh.nix
-    ./nvfmax.nix
     ./hyprland.nix
-    ./brave-policy/default.nix
+    ./modules/nixvim/nixvim.nix
   ];
 
   home.username = "jay";
@@ -17,7 +16,16 @@
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "vim";
+      EDITOR = "vim";
+
+      GTK_ICON_THEME = "Papirus";
+  GTK_THEME = "Adwaita-dark";
+  XDG_DATA_DIRS =
+    "${pkgs.gtk3}/share:"
+    + "${pkgs.gtk4}/share:"
+    + "${pkgs.papirus-icon-theme}/share:"
+    + "${pkgs.adwaita-icon-theme}/share:"
+    + "$XDG_DATA_DIRS";
   };
 
   programs.git = {
@@ -46,7 +54,34 @@
     tealdeer
     rustup
     neovim
-  ];
+    nushell
+    floorp-bin
+    (python3.withPackages (ps: [
+      ps.tkinter
+    ]))
+    vscodium
+    btop
+    opencode
+    papirus-icon-theme
+    adwaita-icon-theme
+];
 
+gtk = {
+    enable = true;
+
+  iconTheme = {
+    name = "Papirus";
+    package = pkgs.papirus-icon-theme;
+   };
+
+   theme = {
+       name = "Adwaita-dark";
+       package = pkgs.gnome-themes-extra;
+   };
+
+};
+
+
+  
   programs.vim.enable = true;
 }

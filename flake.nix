@@ -3,42 +3,38 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nvf.url = "github:notashelf/nvf";
     jj.url = "github:jj-vcs/jj";
+    nixvim.url = "github:nix-community/nixvim";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    { self, nixpkgs, home-manager, nvf, jj, ... }:
-    let
-      system = "x86_64-linux";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    jj,
+    ...
+  }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
+    nixosConfigurations."nixos-jay" = nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [
+        ./configuration.nix
+      ];
+    };
+    homeConfigurations."jay" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      nixosConfigurations."nixos-jay" =
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-              ./configuration.nix
-          ];
-        };
-        homeConfigurations."jay" = 
-          home-manager.lib.homeManagerConfiguration {
-              pkgs = nixpkgs.legacyPackages.${system};
-              extraSpecialArgs = {
-                inherit nvf;
-                inherit jj;
-              };
-              modules = [ 
-                  nvf.homeManagerModules.default
-                 ./nvfmax.nix
-                 ./home.nix
-                     ];
-                 };
-               
-
-        };
-    
+      extraSpecialArgs = {
+        inherit jj;
+      };
+      modules = [
+        ./home.nix
+      ];
+    };
+  };
 }

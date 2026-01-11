@@ -30,7 +30,7 @@ in {
         "BraveSpeedreaderEnabled": false,
         "BraveP3AEnabled": false,
         "BraveStatsPingEnabled": false,
-        "BraveWebDiscoveryEnabled": false,
+        "BraveWebDiscoveryEnabled": false
       }
     '';
   };
