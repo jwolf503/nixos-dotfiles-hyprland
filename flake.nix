@@ -16,6 +16,7 @@
     nixpkgs,
     home-manager,
     jj,
+    nixvim,
     ...
   }: let
     system = "x86_64-linux";
@@ -33,7 +34,9 @@
         inherit jj;
       };
       modules = [
-        ./home.nix
+          ./home.nix
+          nixvim.homeManagerModules.nixvim
+          .modules/nixim/config/default.nix
       ];
     };
   };

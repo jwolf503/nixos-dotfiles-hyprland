@@ -1,9 +1,19 @@
-{self, pkgs, ...}:
+{ pkgs, ...}:
+
 {
+    
   imports = [
       ./bufferline.nix 
   ];
-  colorschemes.gruvbox.enable = true;
+
+  programs.nixvim = {
+      enable = true;
+      colorschemes = {
+          gruvbox = {
+              enable = true;
+          };
+      };
+    
 
   plugins = {
       lualine.enable = true;
@@ -14,5 +24,5 @@
   extraPlugins = with pkgs.vimPlugins; [
       indent-blankline-nvim
   ];
-
+ };
 }
