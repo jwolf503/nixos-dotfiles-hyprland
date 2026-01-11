@@ -6,7 +6,7 @@
   imports = [
     ./sh.nix
     ./hyprland.nix
-    ./modules/nixvim/nixvim.nix
+    ./modules/nixvim/config/default.nix
   ];
 
   home.username = "jay";
