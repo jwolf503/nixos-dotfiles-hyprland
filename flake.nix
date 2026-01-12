@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
+    jj.url = "github:jj-vcs/jj";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,7 +12,7 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager, nvf, ... }:
+    { self, nixpkgs, home-manager, nvf, jj, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -26,7 +27,10 @@
         homeConfigurations."jay" = 
           home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.${system};
-              extraSpecialArgs = { inherit nvf; };
+              extraSpecialArgs = {
+                inherit nvf;
+                inherit jj;
+              };
               modules = [ 
                   nvf.homeManagerModules.default
                  ./nvfmax.nix
