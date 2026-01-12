@@ -16,7 +16,7 @@
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
-      EDITOR = "vim";
+    # EDITOR = "vim";
 
       GTK_ICON_THEME = "Papirus";
   GTK_THEME = "Adwaita-dark";
@@ -64,6 +64,7 @@
     opencode
     papirus-icon-theme
     adwaita-icon-theme
+    geany-with-vte
 ];
 
 gtk = {
@@ -83,5 +84,5 @@ gtk = {
 
 
   
-  programs.vim.enable = true;
+ #programs.vim.enable = true;
 }
