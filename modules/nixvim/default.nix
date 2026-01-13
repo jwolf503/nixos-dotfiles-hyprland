@@ -82,7 +82,7 @@
         options.silent = false;
       }
 
- #telescope
+    #telescope
       {
         mode = "n";
         key = "<leader>ff";
@@ -108,7 +108,7 @@
         options.silent = true;
       }
 
-      #gitsigns
+    #gitsigns
       {
         mode = "n";
         key = "<leader>lp";
@@ -116,7 +116,7 @@
         options.silent = true;
       }
 
-      #lazygit
+    #lazygit
       {
         mode = "n";
         key = "<leader>lg";
@@ -124,7 +124,132 @@
         options.silent = true;
       }
     ];
+
+    plugins = {
+        lsp = {
+            enable = true;
+            servers = {
+                vue_ls.enable = true;
+                ts_ls.enable  = true;
+                cssls.enable  = true;
+                jsonls.enable = true;
+                lua_ls.enable = true;
+                nixd.enable   = true;
+            };
+        };
+
+        dashboard = {
+            enable = true;
+            settings = {
+                theme = "doom";
+                config = {
+                    header = [
+                    "                     "
+                    "                     "
+                    "_____________________"
+                    "|                   |"
+                    "| WELCOME TO NIXVIM |"
+                    "|___________________|"
+                    "                     "
+                    "                     "
+                    "                     "
+                    
+                    ];
+                    center = [
+                    {icon = " "; desc = "Find file"; key = "ff"; action = "Telescope find_files"; }
+                    {icon = " "; desc = "Live grep"; key = "fg"; action = "Telescope live_grep"; }
+                    {icon = " "; desc = "File tree"; key = "e"; action = "NvimTreeToggle"; }
+                    {icon = " "; desc = "Quit";      key = "q"; action = "qa"; }
+                    ];
+                    footer = [ "Tip: press ? for which-key" ];
+                };
+            };
+        };
+
+        gitsigns = {
+            enable = true;
+            settings = {
+                attach_to_untracked = true;
+                current_line_blame = true;
+                current_line_blame_opts = {
+                    delay = 0;
+                    virt_text_pos = "eol";
+
+                    };
+                };
+            };
+        lazygit = {
+            enable = true;
+            settings = {
+                floating_window_winblend = 0;
+                floating_window_scaling_factor = 0.0;
+            };
+         };
+
+        "indent-blankline" = {
+            enable = true;
+            settings = {
+                indent = { char = "|"; tab_char = "|"; };
+                scope = {
+                    enabled =true;
+                    show_start = true;
+                    show_end = false;
+                };
+            };
+         };
+
+        lualine = {
+            enable = true;
+            settings = {
+                options = {
+                    theme = "tokyonight";
+                    icons_enabled = true;
+                    section_separators = { left = ""; right = ""; };
+                    component_separators = { left = ""; right = ""; };
+                };
+            };
+         };
+        
+        telescope = {
+            enable = true;
+            extensions."fzf-native" = {
+            enable = true;          # enable fzf-native extension
+            settings = {
+                fuzzy = true;
+                override_file_sorter = true;
+                override_generic_sorter = true;
+                case_mode = "smart_case";
+          };
+        };
+        
+        settings = {
+          defaults = {
+            layout_config = { prompt_position = "top"; };
+            sorting_strategy = "ascending";
+          };
+            pickers.find_files.hidden = true;
+        };
+      };
+
+         nvim-autopairs = {
+            enable = true;
+         };
+         bufferline = {
+            enable = true;
+         };
+         web-devicons = {
+            enable = true;
+         };
+
+      };
+
+      colorschemes.tokyonight = {
+      enable = true;
+      settings.style = "moon"; # options: "moon", "storm", "night", "day"
+    };
+   
    };
+  
 }
 
 
