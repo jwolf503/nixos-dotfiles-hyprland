@@ -7,6 +7,29 @@
   imports = [
     ./hardware-configuration.nix
   ];
+  environment.etc."/brave/policies/managed/GroupPolicy.json".text = ''
+    {
+     "BrowserSignin": 0,
+      "PasswordManagerEnabled": false,
+      "SpellcheckEnabled": true,
+      "SpellcheckLanguage": [
+        "en-US"
+      ],
+      "TorDisabled": true,
+      "BraveRewardsDisabled": true,
+      "BraveWalletDisabled": true,
+      "BraveVPNDisabled": true,
+      "BraveAIChatEnabled": false,
+      "BraveNewsDisabled": true,
+      "BraveTalkDisabled": true,
+      "BraveSpeedreaderEnabled": false,
+      "BraveP3AEnabled": false,
+      "BraveStatsPingEnabled": false,
+      "BraveWebDiscoveryEnabled": false
+    }
+  '';
+  programs.xonsh.enable = true;
+  environment.shells = ["/run/current-system/sw/bin/xonsh"];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -26,6 +49,7 @@
   };
 
   services.libinput.enable = true;
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -41,6 +65,7 @@
 
   users.users.jay = {
     isNormalUser = true;
+    shell = pkgs.xonsh;
     extraGroups = ["wheel"];
     packages = with pkgs; [
       tree
@@ -53,6 +78,7 @@
     vimPlugins.nvim-cmp
     vimPlugins.nvim-treesitter
     vimPlugins.telescope-nvim
+    vimPlugins.LazyVim
     wget
     brave
     foot
@@ -75,10 +101,20 @@
     rust-analyzer
     home-manager
     python3
+    fish
+    xonsh
+    neovim
+    papirus-icon-theme
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+
+  xdg.portal = {
+  enable = true;
+  extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "25.11";
 }

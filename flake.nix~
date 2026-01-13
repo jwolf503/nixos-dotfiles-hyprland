@@ -33,7 +33,7 @@
       };
       modules = [
         ./home.nix
-        ./modules/nixvim/default.nix
+        ./modules/nixvim/config/default.nix
       ];
     };
   };
