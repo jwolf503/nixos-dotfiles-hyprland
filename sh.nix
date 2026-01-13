@@ -10,6 +10,8 @@
       ll = "ls -l";
       la = "ls -la";
       ".." = "cd ..";
+      nvim = "vim";
+      v ="nvim";
 #      vim = "vim -S ~/.vim/vimrc";
 #      gvim = "gvim -S ~/.vim/vimrc";
 #      g = "gvim -S ~/.vim/vimrc";
@@ -33,6 +35,8 @@
       ll = "ls -l";
       la = "ls -la";
       ".." = "cd ..";
+      nvim = "vim";
+      v = "vim";
 #      vim = "vim -S ~/.vim/vimrc";
 #      gvim = "gvim -S ~/.vim/vimrc";
 #      g = "gvim -S ~/.vim/vimrc";
@@ -54,6 +58,7 @@
         "ll": "ls -l",
         "la": "ls -la",
         "..": "cd ..",
+        "v": "vim",
         "vim": "vim -S ~/.vim/vimrc",
         "gvim": "gvim -S ~/.vim/vimrc",
         "g": "gvim -S ~/.vim/vimrc",

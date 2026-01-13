@@ -9,6 +9,14 @@
     defaultEditor = true;
     vimAlias = true;
     viAlias = true;
+    nvimAlias = true;
+    
+    performance = {
+        combinePlugins = {
+            enable =true;
+            skipDocs = true;
+        };
+    };
 
     globals.mapleader = " ";
 
@@ -230,6 +238,20 @@
             pickers.find_files.hidden = true;
         };
       };
+
+        auto-session = {
+            enable = true;
+
+            settings = {
+                auto_save_enabled = true;
+                auto_restore_enabled = true;
+                suppressed_dirs = [ "~/" "/" ];
+            };
+        };
+
+        sos = {
+            enable = true;
+        };
 
          nvim-autopairs = {
             enable = true;

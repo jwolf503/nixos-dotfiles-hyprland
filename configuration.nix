@@ -56,17 +56,32 @@
   };
 
   services.greetd = {
-    enable = true;
+    enable = false;
     settings.default_session = {
       command = "start-hyprland";
       user = "jay";
     };
   };
 
+  services.displayManager.ly.enable = true;
+
   users.users.jay = {
     isNormalUser = true;
     shell = pkgs.xonsh;
-    extraGroups = ["wheel"];
+    extraGroups = [
+    "flatpak"
+      "disk"
+      "qemu"
+      "kvm"
+      "libvirtd"
+      "sshd"
+      "networkmanager"
+      "wheel"
+      "audio"
+      "video"
+      "libvirtd"
+      "root"
+    ];
     packages = with pkgs; [
       tree
     ];
@@ -74,37 +89,7 @@
 
   # programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
-    vim
-    vimPlugins.nvim-cmp
-    vimPlugins.nvim-treesitter
-    vimPlugins.telescope-nvim
-    vimPlugins.LazyVim
-    wget
-    brave
-    foot
-    quickshell
-    kitty
-    pcmanfm
-    wofi
-    hyprpaper
-    ly
-    pwvucontrol
-    nwg-look
-    arc-theme
-    brightnessctl
-    gpu-screen-recorder
-    thunar
-    thunar-volman
-    yazi
-    git
-    fd
-    rust-analyzer
-    home-manager
-    python3
-    fish
-    xonsh
-    neovim
-    papirus-icon-theme
+    vim  
   ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -115,6 +100,37 @@
   extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  security.polkit.enable = true;
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
+
+  nix = {
+    settings = {
+        warn-dirty = false;
+        experimental-features = ["nix-command" "flakes"];
+        auto-optimise-store = true;
+    };
+  };
+
+  nixpkgs = {
+    config = {
+        allowUnfree = true;
+    };
+  };
+
   system.stateVersion = "25.11";
 }
