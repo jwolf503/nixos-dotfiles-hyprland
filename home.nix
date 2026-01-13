@@ -66,6 +66,7 @@
     papirus-icon-theme
     adwaita-icon-theme
     geany-with-vte
+    vimPlugins.tokyonight-nvim
 ];
 
 gtk = {
