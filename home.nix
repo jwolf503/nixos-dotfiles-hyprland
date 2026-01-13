@@ -1,3 +1,4 @@
+
 {
   config,
   pkgs,
@@ -6,7 +7,7 @@
   imports = [
     ./sh.nix
     ./hyprland.nix
-    ./modules/nixvim/config/default.nix
+    ./modules/nixvim/default.nix
   ];
 
   home.username = "jay";
@@ -83,6 +84,8 @@ gtk = {
 };
 
 
-  
+
  #programs.vim.enable = true;
 }
+￼
+￼

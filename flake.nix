@@ -1,44 +1,39 @@
 {
-  description = "Home Manager configuration of jay";
+  description = "NixOS + Home Manager configuration for jay";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    jj.url = "github:jj-vcs/jj";
-    nixvim.url = "github:nix-community/nixvim";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jj.url = "github:jj-vcs/jj";
+    nixvim.url = "github:nix-community/nixvim";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    jj,
-    nixvim,
-    ...
-  } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, jj, nixvim, ... } @ inputs:
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    nixosConfigurations."nixos-jay" = nixpkgs.lib.nixosSystem {
+    # NixOS system configuration
+    nixosConfigurations.nixos-jay = nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        ./configuration.nix
+        ./nixosConfigurations/nixos-jay/configuration.nix
       ];
     };
-    homeConfigurations."jay" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${system};
+
+    # Home Manager configuration for user 'jay'
+    homeConfigurations.jay = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
       extraSpecialArgs = {
         inherit jj;
         inherit inputs;
       };
       modules = [
-          ./home.nix
-          nixvim.homeModules.nixvim
-          ./modules/nixvim/config/default.nix
+        ./homeConfigurations/jay/home.nix
+        ./homeConfigurations/jay/modules/nixvim/config/default.nix
       ];
     };
   };
