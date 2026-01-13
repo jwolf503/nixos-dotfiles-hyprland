@@ -1,3 +1,4 @@
+# shell config file
 {
   config,
   pkgs,
