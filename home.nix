@@ -54,7 +54,6 @@
     ghostty
     zoxide
     tealdeer
-    neovim
     nushell
     floorp-bin
     vscodium

@@ -89,9 +89,8 @@
 
   # programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
-    vim
-   ];
-
+    vim  
+  ];
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
