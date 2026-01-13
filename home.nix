@@ -15,6 +15,7 @@
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
   programs.home-manager.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
     # EDITOR = "vim";
@@ -53,19 +54,47 @@
     ghostty
     zoxide
     tealdeer
-    rustup
     neovim
     nushell
     floorp-bin
-    (python3.withPackages (ps: [
-      ps.tkinter
-    ]))
     vscodium
     btop
     opencode
     papirus-icon-theme
     adwaita-icon-theme
     geany-with-vte
+   #vimPlugins.tokyonight-nvim
+   #vimPlugins.nvim-cmp
+   #vimPlugins.nvim-treesitter
+   #vimPlugins.telescope-nvim
+   #vimPlugins.LazyVim
+    wget
+    brave
+    foot
+    quickshell
+    kitty
+    pcmanfm
+    wofi
+    hyprpaper
+    ly
+    pwvucontrol
+    nwg-look
+    arc-theme
+    brightnessctl
+    gpu-screen-recorder
+    thunar
+    thunar-volman
+    yazi
+    git
+    fd
+    rust-analyzer
+    cargo
+    rustc
+    python315
+    fish
+    xonsh
+    papirus-icon-theme
+    trash-cli
 ];
 
 gtk = {
